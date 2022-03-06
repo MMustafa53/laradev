@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +16,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/category/all', 'CategoryController@getAllCategory')->name('all.category');
+Route::post('/category/add', 'CategoryController@storeCategory')->name('store.category');
+
 Route::get('/contact', function () {
     return view('contact');
 })->name('con')->middleware('token');
@@ -24,6 +26,4 @@ Route::get('/contact', function () {
 Route::get('about', 'AboutController@index');
 //Route::get('contact', 'ContactController@index');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', 'UserController@getUsers')->name('dashboard');
