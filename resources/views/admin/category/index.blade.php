@@ -39,7 +39,10 @@
                                 <tr>
                                     <th scope="row">{{$cat->id}}</th>
                                     <td>{{$cat->name}}</td>
+{{--                                    Eloquent ORM--}}
                                     <td>{{$cat->user->name}}</td>
+{{--                                    Query BUilder--}}
+{{--                                    <td>{{$cat->name}}</td>--}}
                                     <td>{{\Carbon\Carbon::parse($cat->created_at)->diffForHumans()}}</td>
                                 </tr>
                             @endforeach

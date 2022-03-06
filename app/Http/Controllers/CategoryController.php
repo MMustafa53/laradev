@@ -18,11 +18,15 @@ class CategoryController extends Controller
 //         DB Query
 //        $categories = DB::table('categories')->latest()->get();
 //        $categories = DB::table('categories')->latest()->paginate(5);
+//        $categories = DB::table('categories')
+//            ->leftJoin('users', 'users.id', '=', 'categories.user_id')
+//            ->select('categories.*', 'users.name')
+//            ->paginate(5);
 
         $categories = Category::orderBy('id')->paginate(5);
-        foreach ($categories as $cat){
-            $user = $cat->user;
-        }
+//        foreach ($categories as $cat){
+//            $user = $cat->user;
+//        }
         return view('admin.category.index', compact('categories'));
     }
 
