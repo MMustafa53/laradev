@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 Route::get('/category/all', 'CategoryController@getAllCategory')->name('all.category');
 Route::post('/category/add', 'CategoryController@storeCategory')->name('store.category');
+Route::get('/category/edit/{id}', 'CategoryController@editCategory')->name('edit.category');
 
 Route::get('/contact', function () {
     return view('contact');

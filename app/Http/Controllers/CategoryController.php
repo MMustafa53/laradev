@@ -53,4 +53,11 @@ class CategoryController extends Controller
 //        $message = 'Category Name Not Valid!!';
 //        return view('admin.category.index', compact('categories'));
     }
+
+    public function editCategory($id)
+    {
+//        $category = Category::where('id', $id)->first();
+        $category = Category::find($id)->first();
+        $asd = $category->name;
+    }
 }

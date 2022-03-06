@@ -12,7 +12,7 @@
     <div class="py-12">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="card">
                         @if(session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -32,6 +32,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">User Name</th>
                                 <th scope="col">Created At</th>
+                                <th scope="col">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -44,6 +45,10 @@
 {{--                                    Query BUilder--}}
 {{--                                    <td>{{$cat->name}}</td>--}}
                                     <td>{{\Carbon\Carbon::parse($cat->created_at)->diffForHumans()}}</td>
+                                    <td>
+                                        <a href="{{route('edit.category', ['id'=>$cat->id])}}" class="btn btn-info">Edit</a>
+                                        <a href="{{url('category/delete/'.$cat->id)}}" class="btn btn-danger">delete</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -52,7 +57,7 @@
                     </div>
                 </div>
                 {{--                Form --}}
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">
                             Category Added
