@@ -30,7 +30,7 @@
                             <tr>
                                 <th scope="col">Sl No</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Email</th>
+                                <th scope="col">User Name</th>
                                 <th scope="col">Created At</th>
                             </tr>
                             </thead>
@@ -39,12 +39,13 @@
                                 <tr>
                                     <th scope="row">{{$cat->id}}</th>
                                     <td>{{$cat->name}}</td>
-                                    <td>{{$cat->email}}</td>
+                                    <td>{{$cat->user->name}}</td>
                                     <td>{{\Carbon\Carbon::parse($cat->created_at)->diffForHumans()}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
+                        {{$categories->links()}}
                     </div>
                 </div>
                 {{--                Form --}}
