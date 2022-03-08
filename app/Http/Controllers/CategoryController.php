@@ -24,10 +24,11 @@ class CategoryController extends Controller
 //            ->paginate(5);
 
         $categories = Category::orderBy('id')->paginate(5);
+        $trash = Category::onlyTrashed()->paginate(5);
 //        foreach ($categories as $cat){
 //            $user = $cat->user;
 //        }
-        return view('admin.category.index', compact('categories'));
+        return view('admin.category.index', compact('categories','trash'));
     }
 
     public function storeCategory(Request $request)
@@ -56,8 +57,49 @@ class CategoryController extends Controller
 
     public function editCategory($id)
     {
-//        $category = Category::where('id', $id)->first();
-        $category = Category::find($id)->first();
-        $asd = $category->name;
+        $category = Category::where('id', $id)->first();
+//        $category = DB::table('categories')->where('id', $id)->first();
+//        $category = Category::find($id)->first();
+        return view('admin.category.edit', compact('category'));
+    }
+
+    public function deleteCategory($id)
+    {
+        $category = Category::where('id', $id)->delete();
+//        $category = DB::table('categories')->where('id', $id)->delete();
+        return Redirect()->route('all.category')->with('success', 'Category Deleted Successfully');
+    }
+
+    public function permanentDeleteCategory($id)
+    {
+        $category = Category::onlyTrashed()->where('id', $id)->forceDelete();
+//        $category = DB::table('categories')->where('id', $id)->forceDelete();
+        return Redirect()->route('all.category')->with('success', 'Category Deleted Successfully');
+    }
+
+    public function restoreCategory($id)
+    {
+        $category = Category::withTrashed()->where('id', $id)->restore();
+//        $category = DB::table('categories')->where('id', $id)->delete();
+        return Redirect()->route('all.category')->with('success', 'Category Restore Successfully');
+    }
+
+    public function updateCategory(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required|unique:categories|max:255',
+        ], [
+            'name.required' => 'Category Name Not Valid!!',
+            'name.max' => 'Category Name Less Than 255 Character',
+        ]);
+//        DB Query
+//        $validated['user_id'] = Auth::user()->id;
+//        DB::table('categories')->where('id', $id)->update($validated);
+        $category = Category::find($id)->update([
+            'name'=>$request->name,
+            'user_id'=>Auth::user()->id,
+        ]);
+
+        return Redirect()->route('all.category')->with('success', 'Category Edited Successfully');
     }
 }
