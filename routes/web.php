@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+// Category Route
 Route::get('/category/all', 'CategoryController@getAllCategory')->name('all.category');
 Route::post('/category/add', 'CategoryController@storeCategory')->name('store.category');
 Route::get('/category/edit/{id}', 'CategoryController@editCategory')->name('edit.category');
@@ -23,6 +23,9 @@ Route::post('/category/update/{id}', 'CategoryController@updateCategory')->name(
 Route::get('/category/restore/{id}', 'CategoryController@restoreCategory')->name('restore.category');
 Route::get('/category/permanent-delete/{id}', 'CategoryController@permanentDeleteCategory')->name('permanent.category');
 Route::get('/category/delete/{id}', 'CategoryController@deleteCategory');
+// Brand Route
+Route::get('/brand/all', 'BrandController@getAllBrand')->name('all.brand');
+Route::post('/brand/add', 'BrandController@storeBrand')->name('store.brand');
 
 Route::get('/contact', function () {
     return view('contact');
