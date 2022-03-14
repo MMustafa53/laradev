@@ -26,6 +26,11 @@ Route::get('/category/delete/{id}', 'CategoryController@deleteCategory');
 // Brand Route
 Route::get('/brand/all', 'BrandController@getAllBrand')->name('all.brand');
 Route::post('/brand/add', 'BrandController@storeBrand')->name('store.brand');
+Route::get('/brand/edit/{id}', 'BrandController@editBrand')->name('edit.brand');
+Route::post('/brand/update/{id}', 'BrandController@updateBrand')->name('update.brand');
+Route::get('/brand/restore/{id}', 'BrandController@restoreBrand')->name('restore.brand');
+Route::get('/brand/permanent-delete/{id}', 'BrandController@permanentDeleteBrand')->name('permanent.brand');
+Route::get('/brand/delete/{id}', 'BrandController@deleteBrand');
 
 Route::get('/contact', function () {
     return view('contact');

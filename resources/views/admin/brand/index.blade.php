@@ -32,15 +32,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($brand as $cat)
+                            @foreach($brand as $brn)
                                 <tr>
-                                    <th scope="row">{{$cat->id}}</th>
-                                    <td>{{$cat->name}}</td>
-                                    <td><img src="{{asset($cat->image)}}" style="height: 40px; width: 70px"> </td>
-                                    <td>{{\Carbon\Carbon::parse($cat->created_at)->diffForHumans()}}</td>
+                                    <th scope="row">{{$brn->id}}</th>
+                                    <td>{{$brn->name}}</td>
+                                    <td><img src="{{asset($brn->image)}}" style="height: 40px; width: 70px"> </td>
+                                    <td>{{\Carbon\Carbon::parse($brn->created_at)->diffForHumans()}}</td>
                                     <td>
-                                        <a href="{{route('edit.category', ['id'=>$cat->id])}}" class="btn btn-info">Edit</a>
-                                        <a href="{{url('category/delete/'.$cat->id)}}" class="btn btn-danger">Delete</a>
+                                        <a href="{{route('edit.brand', ['id'=>$brn->id])}}" class="btn btn-info">Edit</a>
+                                        <a href="{{url('brand/delete/'.$brn->id)}}" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
